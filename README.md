@@ -84,3 +84,7 @@ node scripts/defuddle.mjs "https://example.com/article"          # clean markdow
 node scripts/url-to-pdf.mjs "https://x.com/user/status/123" out.pdf
 node scripts/pdf-export.mjs page.html page.pdf
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE).
