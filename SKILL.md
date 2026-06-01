@@ -1,5 +1,5 @@
 ---
-name: plugin-market-scan
+name: market-scan
 description: 'Run a monthly AI market intelligence scan: fetch fresh signals across news/policy/security sources, save a structured markdown recap, render a newspaper-style HTML, and export a PDF. Use when: market scan, scan the market, what''s new in tech, get me the news, run market scan, publish last scan, turn last scan into newspaper.'
 ---
 
