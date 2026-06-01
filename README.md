@@ -2,7 +2,7 @@
 
 A portable, self-contained **Agent Skill** that runs a monthly **AI market intelligence scan** and publishes it as a structured Markdown (`.md`) recap, a newspaper-style HTML (`.html`) page, and a PDF (`.pdf`).
 
-It's a plain `SKILL.md` skill, so it works with any agent that supports the Agent Skills standard — **Cursor, Claude Code, Codex CLI**, and others.
+It's a plain `SKILL.md` skill, so it works with any agent that supports the Agent Skills standard — **Claude Code, Codex CLI**, and others.
 
 ## What it does
 
@@ -21,9 +21,6 @@ It replies with a single confirmation line; the content lives in the output file
 Clone the repo into your agent's global skills folder. **The folder must be named `market-scan`** (it has to match the `name:` in `SKILL.md`):
 
 ```bash
-# Cursor
-git clone https://github.com/irisBuild25/market-scan-skill ~/.cursor/skills/market-scan
-
 # Claude Code
 git clone https://github.com/irisBuild25/market-scan-skill ~/.claude/skills/market-scan
 
@@ -33,11 +30,10 @@ git clone https://github.com/irisBuild25/market-scan-skill ~/.codex/skills/marke
 
 | Agent | Global skills folder | Project skills folder |
 |---|---|---|
-| Cursor | `~/.cursor/skills/` (also `~/.agents/skills/`) | `.cursor/skills/` or `.agents/skills/` |
 | Claude Code | `~/.claude/skills/` | `.claude/skills/` |
 | Codex CLI | `~/.codex/skills/` (or `$CODEX_HOME/skills/`) | `.codex/skills/` |
 
-After cloning, restart/reload the agent if it doesn't pick the skill up automatically, then trigger it by asking for a *"market scan."* (In Cursor and Codex you can also invoke it explicitly with `/market-scan`.)
+After cloning, restart/reload the agent if it doesn't pick the skill up automatically, then trigger it by asking for a *"market scan."* (In Codex you can also invoke it explicitly with `/market-scan`.)
 
 ### Install the Node dependencies
 
