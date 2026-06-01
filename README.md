@@ -16,16 +16,39 @@ It replies with a single confirmation line; the content lives in the output file
 
 ## Install
 
+Choose one of two ways.
+
+### Option A — As a Claude Code plugin (recommended)
+
+Inside a Claude Code session, add this repo as a marketplace and install the plugin:
+
+```text
+/plugin marketplace add irisBuild25/market-scan-skill
+/plugin install market-scan-skill@irisbuild-plugins
+```
+
+### Option B — As a personal skill (manual clone)
+
+Clone the repo straight into your personal skills folder:
+
+```bash
+git clone https://github.com/irisBuild25/market-scan-skill ~/.claude/skills/market-scan-skill
+```
+
+Both make the skill available in any project; trigger it by asking for a *"market scan."*
+
+### Install the Node dependencies
+
+The bundled scripts need a few Node packages. From the installed folder:
+
 ```bash
 npm install
 ```
 
-Installs the Node dependencies used by the bundled scripts:
-
 - `puppeteer` — HTML→PDF export and JS-heavy page rendering
 - `defuddle` + `jsdom` — clean article extraction
 
-If you only want the markdown recap (no PDF), you can skip install; the PDF/scrape steps fail gracefully with a clear message and the rest of the pipeline still runs.
+If you only want the markdown recap (no PDF), you can skip this; the PDF/scrape steps fail gracefully with a clear message and the rest of the pipeline still runs.
 
 ## First run (guided setup)
 

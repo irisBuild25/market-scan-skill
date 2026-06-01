@@ -1,0 +1,17 @@
+{
+  "name": "market-scan-skill",
+  "description": "Portable AI market intelligence scan: fetch signals across news/policy/security sources, save a Markdown recap, render a newspaper-style HTML, and export a PDF.",
+  "author": {
+    "name": "Ha Nguyen"
+  },
+  "homepage": "https://github.com/irisBuild25/market-scan-skill",
+  "repository": "https://github.com/irisBuild25/market-scan-skill",
+  "license": "MIT",
+  "keywords": [
+    "market-research",
+    "market-intelligence",
+    "ai",
+    "news",
+    "product-management"
+  ]
+}
