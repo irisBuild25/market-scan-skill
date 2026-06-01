@@ -1,0 +1,14 @@
+# Node dependencies (installed via `npm install`)
+node_modules/
+package-lock.json
+
+# Generated scan output (default location)
+market-scan/
+
+# Scraper scratch files
+_scrape/
+**/_scrape/
+
+# OS / editor noise
+.DS_Store
+*.log

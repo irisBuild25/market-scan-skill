@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Intel — YYYY-MM-DD</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #FF6719;
+  --orange-dark: #cc4f0f;
+  --black: #1a1a1a;
+  --off-black: #2b2b2b;
+  --dark-gray: #404040;
+  --mid-gray: #737373;
+  --light-gray: #a3a3a3;
+  --border: #e5e5e5;
+  --bg: #f5f5f5;
+  --white: #ffffff;
+  --high: #FF6719;
+  --medium: #f59e0b;
+  --watch: #a3a3a3;
+  --hypothesis-bg: #fff7ed;
+  --hypothesis-border: #FF6719;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--black);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a { color: var(--orange); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── HEADER ─── */
+.site-header {
+  background: var(--black);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+.site-name span { color: var(--orange); }
+
+.header-meta {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--light-gray);
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--black);
+  padding: 48px 24px 52px;
+  color: var(--white);
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--orange);
+}
+
+.hero-headline {
+  font-family: 'Noto Serif Display', Georgia, serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  max-width: 820px;
+  margin-bottom: 20px;
+}
+
+.hero-deck {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #c0c0c0;
+  max-width: 680px;
+  margin-bottom: 24px;
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #737373;
+  letter-spacing: 0.04em;
+}
+
+.hero-meta-sep { color: #404040; }
+
+/* ─── LAYOUT ─── */
+.page-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ─── SECTION HEADER ─── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--black);
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.section-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--mid-gray);
+  margin-left: auto;
+}
+
+/* ─── SIGNAL CARD ─── */
+.signal-card {
+  border: 1px solid var(--border);
+  background: var(--white);
+  margin-bottom: 16px;
+  transition: box-shadow 0.15s;
+}
+
+.signal-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+.signal-card-inner { padding: 20px 22px; }
+
+.signal-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.signal-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--light-gray);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  padding-top: 3px;
+}
+
+.signal-headline {
+  font-family: 'Noto Serif Display', Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--black);
+  flex: 1;
+}
+
+.relevance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.relevance-badge.high { background: #fff0e8; color: var(--high); }
+.relevance-badge.medium { background: #fffbeb; color: #b45309; }
+.relevance-badge.watch { background: #f5f5f5; color: var(--mid-gray); }
+
+.signal-source {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--mid-gray);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.signal-source a {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.signal-source-sep { color: var(--border); }
+
+.signal-type {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.signal-type.product  { background: #f0fdf4; color: #15803d; }
+.signal-type.policy   { background: #eff6ff; color: #1d4ed8; }
+.signal-type.security { background: #fef2f2; color: #dc2626; }
+.signal-type.strategy { background: #faf5ff; color: #7e22ce; }
+.signal-type.research { background: #f8fafc; color: #475569; }
+
+.signal-what {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--dark-gray);
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pm-lens-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+
+.pm-lens-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.dig-deeper {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border-left: 3px solid var(--border);
+  font-size: 12px;
+  color: var(--mid-gray);
+  line-height: 1.6;
+}
+
+.dig-deeper strong { color: var(--dark-gray); font-weight: 700; }
+.dig-deeper em { color: var(--dark-gray); font-style: italic; }
+
+/* ─── HYPOTHESIS ─── */
+.hypothesis-block {
+  background: var(--hypothesis-bg);
+  border: 1px solid #fed7aa;
+  border-left: 4px solid var(--orange);
+  padding: 22px 22px 20px;
+  margin-bottom: 16px;
+}
+
+.hypothesis-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+
+.hypothesis-pattern {
+  font-family: 'Noto Serif Display', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--black);
+  margin-bottom: 14px;
+}
+
+.hypothesis-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 6px 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dark-gray);
+  margin-bottom: 6px;
+}
+
+.hypothesis-key {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  padding-top: 2px;
+}
+
+.confidence-pill {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.confidence-pill.high { background: #dcfce7; color: #166534; }
+.confidence-pill.medium { background: #fef9c3; color: #854d0e; }
+.confidence-pill.low { background: #f5f5f5; color: var(--mid-gray); }
+
+/* ─── SIDEBAR ─── */
+.sidebar { display: flex; flex-direction: column; gap: 24px; }
+
+.sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 18px 18px 16px;
+}
+
+.sidebar-card-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--black);
+}
+
+/* Competitive radar */
+.radar-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.radar-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.radar-company {
+  font-weight: 700;
+  color: var(--black);
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.radar-what {
+  font-size: 12px;
+  color: var(--dark-gray);
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+
+.radar-implication {
+  font-size: 11px;
+  color: var(--mid-gray);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.log-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  color: var(--mid-gray);
+  margin-top: 4px;
+}
+
+/* Actions */
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--dark-gray);
+}
+
+.action-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.action-check {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Open Questions */
+.question-item {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--dark-gray);
+  display: flex;
+  gap: 8px;
+}
+
+.question-item:last-child { border-bottom: none; padding-bottom: 0; }
+.question-arrow { color: var(--orange); flex-shrink: 0; font-weight: 700; }
+
+/* Tools */
+.tool-row {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.tool-row:last-child { border-bottom: none; padding-bottom: 0; }
+.tool-name { font-weight: 700; color: var(--black); margin-bottom: 2px; }
+.tool-desc { font-size: 12px; color: var(--dark-gray); line-height: 1.5; }
+.tool-verdict {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1px 7px;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+.tool-verdict.yes { background: #dcfce7; color: #166534; }
+.tool-verdict.maybe { background: #fef9c3; color: #854d0e; }
+.tool-verdict.no { background: #f5f5f5; color: var(--mid-gray); }
+
+/* ─── FOOTER ─── */
+.site-footer {
+  background: var(--black);
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #737373;
+  letter-spacing: 0.06em;
+}
+
+.site-footer span { font-weight: 500; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .page-body { grid-template-columns: 1fr; }
+  .hero { padding: 32px 20px 36px; }
+  .page-body { padding: 28px 20px 60px; }
+}
+
+/* ─── PRINT / PDF ─── */
+@media print {
+  .site-header { position: static; }
+  .signal-card:hover { box-shadow: none; }
+  body { background: white; }
+  .page-body { grid-template-columns: 1fr 280px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<!-- DATA: scan_date — e.g. "February 22, 2026" -->
+<header class="site-header">
+  <div class="site-name">AI <span>Intel</span></div>
+  <div class="header-meta">Market Signal Scan · <!-- DATA: scan_date --></div>
+</header>
+
+<!-- HERO — Macro Theme -->
+<!-- DATA: hero_eyebrow — e.g. "Weekly Market Scan · 7 Signals" -->
+<!-- DATA: hero_headline — the macro theme sentence (strong, punchy) -->
+<!-- DATA: hero_deck — why it matters for you, 1-2 sentences -->
+<!-- DATA: scan_date_long — e.g. "Sunday, February 22, 2026" -->
+<!-- DATA: signal_count — integer -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><!-- DATA: hero_eyebrow --></div>
+    <h1 class="hero-headline"><!-- DATA: hero_headline --></h1>
+    <p class="hero-deck"><!-- DATA: hero_deck --></p>
+    <div class="hero-meta">
+      <span><!-- DATA: scan_date_long --></span>
+      <span class="hero-meta-sep">·</span>
+      <span><!-- DATA: signal_count --> signals</span>
+      <span class="hero-meta-sep">·</span>
+      <span>Sources: <!-- DATA: sources_list --></span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE BODY -->
+<div class="page-body">
+
+  <!-- MAIN COLUMN -->
+  <main>
+
+    <!-- SIGNALS -->
+    <!-- DATA: signal_N_headline — headline for signal N -->
+    <!-- DATA: signal_N_source_name — publication name, e.g. "TechCrunch" -->
+    <!-- DATA: signal_N_source_url — direct article URL -->
+    <!-- DATA: signal_N_date — e.g. "Feb 22, 2026" -->
+    <!-- DATA: signal_N_relevance — "high" | "medium" | "watch" -->
+    <!-- DATA: signal_N_relevance_label — "High" | "Medium" | "Watch" -->
+    <!-- DATA: signal_N_what — 1-2 sentence factual summary -->
+    <!-- DATA: signal_N_pm_lens — PM so-what, 2-3 sentences -->
+    <!-- DATA: signal_N_dig_deeper — pre-written follow-up question -->
+
+    <div class="section-header">
+      <span class="section-title">Top Signals</span>
+      <span class="section-count"><!-- DATA: signal_count --> this scan</span>
+    </div>
+
+    <!-- Signal 1 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">01</span>
+          <h2 class="signal-headline"><!-- DATA: signal_1_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_1_relevance -->"><!-- DATA: signal_1_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_1_source_url -->" target="_blank"><!-- DATA: signal_1_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_1_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_1_type -->"><!-- DATA: signal_1_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_1_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_1_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_1_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- Signal 2 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">02</span>
+          <h2 class="signal-headline"><!-- DATA: signal_2_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_2_relevance -->"><!-- DATA: signal_2_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_2_source_url -->" target="_blank"><!-- DATA: signal_2_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_2_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_2_type -->"><!-- DATA: signal_2_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_2_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_2_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_2_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- Signal 3 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">03</span>
+          <h2 class="signal-headline"><!-- DATA: signal_3_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_3_relevance -->"><!-- DATA: signal_3_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_3_source_url -->" target="_blank"><!-- DATA: signal_3_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_3_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_3_type -->"><!-- DATA: signal_3_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_3_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_3_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_3_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- Signal 4 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">04</span>
+          <h2 class="signal-headline"><!-- DATA: signal_4_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_4_relevance -->"><!-- DATA: signal_4_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_4_source_url -->" target="_blank"><!-- DATA: signal_4_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_4_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_4_type -->"><!-- DATA: signal_4_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_4_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_4_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_4_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- Signal 5 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">05</span>
+          <h2 class="signal-headline"><!-- DATA: signal_5_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_5_relevance -->"><!-- DATA: signal_5_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_5_source_url -->" target="_blank"><!-- DATA: signal_5_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_5_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_5_type -->"><!-- DATA: signal_5_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_5_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_5_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_5_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- Signal 6 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">06</span>
+          <h2 class="signal-headline"><!-- DATA: signal_6_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_6_relevance -->"><!-- DATA: signal_6_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_6_source_url -->" target="_blank"><!-- DATA: signal_6_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_6_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_6_type -->"><!-- DATA: signal_6_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_6_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_6_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_6_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- Signal 7 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">07</span>
+          <h2 class="signal-headline"><!-- DATA: signal_7_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_7_relevance -->"><!-- DATA: signal_7_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_7_source_url -->" target="_blank"><!-- DATA: signal_7_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_7_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_7_type -->"><!-- DATA: signal_7_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_7_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_7_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_7_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- Signal 8 — omit if signal_count < 8 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">08</span>
+          <h2 class="signal-headline"><!-- DATA: signal_8_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_8_relevance -->"><!-- DATA: signal_8_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_8_source_url -->" target="_blank"><!-- DATA: signal_8_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_8_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_8_type -->"><!-- DATA: signal_8_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_8_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_8_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_8_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- Signal 9 — omit if signal_count < 9 -->
+    <div class="signal-card">
+      <div class="signal-card-inner">
+        <div class="signal-top">
+          <span class="signal-num">09</span>
+          <h2 class="signal-headline"><!-- DATA: signal_9_headline --></h2>
+          <span class="relevance-badge <!-- DATA: signal_9_relevance -->"><!-- DATA: signal_9_relevance_label --></span>
+        </div>
+        <div class="signal-source">
+          <a href="<!-- DATA: signal_9_source_url -->" target="_blank"><!-- DATA: signal_9_source_name --></a>
+          <span class="signal-source-sep">|</span>
+          <span><!-- DATA: signal_9_date --></span>
+          <span class="signal-source-sep">|</span>
+          <span class="signal-type <!-- DATA: signal_9_type -->"><!-- DATA: signal_9_type_label --></span>
+        </div>
+        <p class="signal-what"><!-- DATA: signal_9_what --></p>
+        <div class="pm-lens-label">PM Lens</div>
+        <p class="pm-lens-text"><!-- DATA: signal_9_pm_lens --></p>
+        <div class="dig-deeper"><strong>Dig deeper:</strong> Ask — <em>"<!-- DATA: signal_9_dig_deeper -->"</em></div>
+      </div>
+    </div>
+
+    <!-- EMERGING HYPOTHESIS -->
+    <!-- DATA: hypothesis_pattern — the named pattern across signals -->
+    <!-- DATA: hypothesis_confidence — "high" | "medium" | "low" -->
+    <!-- DATA: hypothesis_confidence_label — "High" | "Medium" | "Low" -->
+    <!-- DATA: hypothesis_if_true_1 — first implication sentence -->
+    <!-- DATA: hypothesis_if_true_2 — second implication sentence -->
+    <!-- DATA: hypothesis_next_step — what to do next -->
+    <!-- DATA: hypothesis_dig_deeper — follow-up question prompt -->
+    <div class="section-header" style="margin-top: 40px;">
+      <span class="section-title">Emerging Hypothesis</span>
+    </div>
+
+    <div class="hypothesis-block">
+      <div class="hypothesis-label">Pattern Detected</div>
+      <p class="hypothesis-pattern"><!-- DATA: hypothesis_pattern --></p>
+      <div class="hypothesis-row">
+        <span class="hypothesis-key">Confidence</span>
+        <span><span class="confidence-pill <!-- DATA: hypothesis_confidence -->"><!-- DATA: hypothesis_confidence_label --></span></span>
+      </div>
+      <div class="hypothesis-row">
+        <span class="hypothesis-key">If true</span>
+        <span><!-- DATA: hypothesis_if_true_1 --> <!-- DATA: hypothesis_if_true_2 --></span>
+      </div>
+      <div class="hypothesis-row">
+        <span class="hypothesis-key">Next step</span>
+        <span><!-- DATA: hypothesis_next_step --></span>
+      </div>
+      <div class="dig-deeper" style="margin-top: 14px;"><strong>Pressure-test it:</strong> Ask — <em>"<!-- DATA: hypothesis_dig_deeper -->"</em></div>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- COMPETITIVE RADAR -->
+    <!-- DATA: radar_rows — one .radar-row per competitor:
+         <div class="radar-row">
+           <div class="radar-company">COMPANY NAME</div>
+           <div class="radar-what">What they did — 1 sentence</div>
+           <div class="radar-implication">Product implication — 1 sentence</div>
+           <span class="log-badge">Log →</span>
+         </div> -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">Competitive Radar</div>
+      <!-- DATA: radar_rows -->
+    </div>
+
+    <!-- AI TOOLS SPOTTED -->
+    <!-- DATA: tools_rows — one .tool-row per tool:
+         <div class="tool-row">
+           <div class="tool-name">TOOL NAME</div>
+           <div class="tool-desc">What it does — 1 sentence. Relevant to: Product / Workflow</div>
+           <span class="tool-verdict yes|maybe|no">Yes / Maybe / No</span>
+         </div> -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">AI Tools Spotted</div>
+      <!-- DATA: tools_rows -->
+    </div>
+
+    <!-- OPEN QUESTIONS -->
+    <!-- DATA: questions_list — one .question-item per question:
+         <div class="question-item">
+           <span class="question-arrow">→</span>
+           <span>QUESTION TEXT</span>
+         </div> -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">Open Questions</div>
+      <!-- DATA: questions_list -->
+    </div>
+
+    <!-- ACTIONS -->
+    <!-- DATA: actions_list — one .action-item per action:
+         <div class="action-item">
+           <div class="action-check"></div>
+           <span>ACTION TEXT</span>
+         </div> -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">Actions</div>
+      <!-- DATA: actions_list -->
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<!-- DATA: footer_scan_ref — e.g. "AI Intel · Market Scan · 2026-02-22" -->
+<footer class="site-footer">
+  <span><!-- DATA: footer_scan_ref --></span>
+  <span>PM Operating System · Claude Code CLI</span>
+  <span><!-- DATA: signal_count --> signals · <!-- DATA: scan_date --></span>
+</footer>
+
+</body>
+</html>
