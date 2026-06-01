@@ -16,26 +16,13 @@ It replies with a single confirmation line; the content lives in the output file
 
 ## Install
 
-Choose one of two ways.
-
-### Option A — As a Claude Code plugin (recommended)
-
-Inside a Claude Code session, add this repo as a marketplace and install the plugin:
-
-```text
-/plugin marketplace add irisBuild25/market-scan-skill
-/plugin install market-scan-skill@irisbuild-plugins
-```
-
-### Option B — As a personal skill (manual clone)
-
-Clone the repo straight into your personal skills folder:
+Clone the repo into your personal skills folder so it's available in any project:
 
 ```bash
 git clone https://github.com/irisBuild25/market-scan-skill ~/.claude/skills/market-scan-skill
 ```
 
-Both make the skill available in any project; trigger it by asking for a *"market scan."*
+Then trigger it by asking for a *"market scan."*
 
 ### Install the Node dependencies
 
